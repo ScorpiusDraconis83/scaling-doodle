@@ -1,0 +1,7 @@
+src/
+  main/
+    kotlin/ or java/
+    resources/
+      META-INF/plugin.xml
+build.gradle.kts
+settings.gradle.kts
