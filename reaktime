@@ -1,0 +1,71 @@
+src/
+  main/
+    kotlin/
+      com/
+        fred/
+          scalingdoodle/
+            MyPluginAction.kt
+    resources/
+      META-INF/
+        plugin.xml
+build.gradle.kts
+settings.gradle.kts
+rootProject.name = "scaling-doodle"
+plugins {
+    id("java")
+    id("org.jetbrains.intellij") version "1.17.3"
+}
+
+group = "com.fred.scalingdoodle"
+version = "1.0.0"
+
+repositories {
+    mavenCentral()
+}
+
+intellij {
+    version.set("2023.3")
+    type.set("IC")
+}
+
+tasks {
+    patchPluginXml {
+        sinceBuild.set("233")
+        untilBuild.set("999.*")
+    }
+}
+<idea-plugin>
+    <id>com.fred.scalingdoodle</id>
+    <name>Scaling Doodle</name>
+    <vendor email="your-email@example.com" url="https://github.com/ScorpiusDraconis83">16CentAstrology Inc.</vendor>
+
+    <description>
+        A starter IntelliJ plugin created by Fred to begin building a paid plugin product.
+    </description>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <actions>
+        <action id="com.fred.scalingdoodle.MyPluginAction"
+                class="com.fred.scalingdoodle.MyPluginAction"
+                text="Hello from Scaling Doodle"
+                description="Shows a greeting message">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>
+package com.fred.scalingdoodle
+
+import com.intellij.openapi.actionSystem.AnAction
+import com.intellij.openapi.actionSystem.AnActionEvent
+import com.intellij.openapi.ui.Messages
+
+class MyPluginAction : AnAction() {
+    override fun actionPerformed(e: AnActionEvent) {
+        Messages.showMessageDialog(
+            "Hello from your new plugin, Fred!",
+            "Scaling Doodle",
+            Messages.getInformationIcon()
+        )
+    }
+}
